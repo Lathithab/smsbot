@@ -64,10 +64,27 @@ def check_spam(message: str, access_token: str):
 
         # Generate advice based on label
         if label.lower() == "spam":
-            advice = f"⚠️ This message is likely spam (Confidence: {confidence:.1f}%). Avoid clicking links or sharing info."
+            advice = (
+                f"[{time_now}] ⚠️ Heads up! This message looks like spam (Confidence: {confidence:.1f}%).\n\n"
+                "💡 Tips:\n"
+                "🚫 Don’t click any links or download attachments.\n"
+                "🔒 Never share personal info or OTP codes.\n"
+                "📞 If it’s from a known contact, confirm through another channel.\n"
+                "⚠️ Mark the message as spam in your messaging app.\n"
+                "🌐 Google the company, offer, or message content to verify legitimacy.\n"
+                "🧐 Look for spelling mistakes or suspicious URLs."
+                
+                
+            )
         else:
-            advice = f"✅ Message seems safe (Confidence: {confidence:.1f}%). Always double-check links or unknown senders."
-
+            advice = (
+                f"[{time_now}] ✅ This message seems safe (Confidence: {confidence:.1f}%).\n\n"
+                "💡 Tips:\n"
+                "🧐Still double-check links before clicking.\n"
+                "🔒Avoid sharing sensitive info if something feels off.\n"
+                "⚠️Keep an eye out for grammar mistakes or weird sender addresses.\n"
+                "🌐If in doubt, ask a friend or verify through official sources."
+            )
         return label, confidence, advice
 
     except Exception as e:
