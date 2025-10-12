@@ -4,8 +4,8 @@ import streamlit as st
 # -----------------------------
 # Nyckel Credentials
 # -----------------------------
-CLIENT_ID = st.secrets["nyckel"]["client_id"]
-CLIENT_SECRET = st.secrets["nyckel"]["client_secret"]
+CLIENT_ID = st.secrets["nyckel"]["CLIENT_ID"]
+CLIENT_SECRET = st.secrets["nyckel"]["CLIENT_SECRET"]
 
 # Get authentication token
 def get_nyckel_token():
