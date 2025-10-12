@@ -17,7 +17,7 @@ Typing Animations & Emojis: Makes chatting with the bot feel natural and engagin
 Demo
 
 You can deploy and try the bot live on Streamlit Cloud:
-https://share.streamlit.io/Lathithab/smsbot/main/app.py
+(https://edumzansi.streamlit.app/)
 
 
 
