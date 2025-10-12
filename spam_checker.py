@@ -1,12 +1,10 @@
 import requests
 import streamlit as st
-
 # -----------------------------
 # Nyckel Credentials
 # -----------------------------
 CLIENT_ID = st.secrets["nyckel"]["CLIENT_ID"]
 CLIENT_SECRET = st.secrets["nyckel"]["CLIENT_SECRET"]
-
 # Get authentication token
 def get_nyckel_token():
     """Fetch OAuth token from Nyckel"""
@@ -29,7 +27,6 @@ def get_nyckel_token():
         print(f"Status Code: {result.status_code}")
         print(f"Response Body: {result.text}")
         return None
-
 
 def check_spam(message: str, access_token: str):
     """
@@ -61,33 +58,32 @@ def check_spam(message: str, access_token: str):
         response = result.json()
         label = response.get("labelName", "unknown")
         confidence = response.get("confidence", 0) * 100  # convert to percentage
-
+        
         # Generate advice based on label
- if label.lower() == "spam":
-    advice = (
-        f"⚠️ Heads up! This message looks like spam (I'm {confidence:.1f}% sure).\n\n"
-        "💡 Tips:\n"
-        "🚫 Don't click any links or download attachments.\n"
-        "🔒 Never share personal info or OTP codes.\n"
-        "📞 If it's from a known contact, confirm through another channel.\n"
-        "⚠️ Mark the message as spam in your messaging app.\n"
-        "🌐 Google the company, offer, or message content to verify legitimacy.\n"
-        "🧐 Look for spelling mistakes or suspicious URLs."
-    )
-else:
-    advice = (
-        f"✅ This message seems safe (I'm {confidence:.1f}% sure).\n\n"
-        "💡 Tips:\n"
-        "🧐 Still double-check links before clicking.\n"
-        "🔒 Avoid sharing sensitive info if something feels off.\n"
-        "⚠️ Keep an eye out for grammar mistakes or weird sender addresses.\n"
-        "🌐 If in doubt, ask a friend or verify through official sources."
-    )
+        if label.lower() == "spam":
+            advice = (
+                f"⚠️ Heads up! This message looks like spam (I'm {confidence:.1f}% sure).\n\n"
+                "💡 Tips:\n"
+                "🚫 Don't click any links or download attachments.\n"
+                "🔒 Never share personal info or OTP codes.\n"
+                "📞 If it's from a known contact, confirm through another channel.\n"
+                "⚠️ Mark the message as spam in your messaging app.\n"
+                "🌐 Google the company, offer, or message content to verify legitimacy.\n"
+                "🧐 Look for spelling mistakes or suspicious URLs."
+            )
+        else:
+            advice = (
+                f"✅ This message seems safe (I'm {confidence:.1f}% sure).\n\n"
+                "💡 Tips:\n"
+                "🧐 Still double-check links before clicking.\n"
+                "🔒 Avoid sharing sensitive info if something feels off.\n"
+                "⚠️ Keep an eye out for grammar mistakes or weird sender addresses.\n"
+                "🌐 If in doubt, ask a friend or verify through official sources."
+            )
+        
         return label, confidence, advice
-
     except Exception as e:
         return "error", 0, f"⚠️ Error checking message: {e}"
-
 
 # -----------------------------
 # Example usage
