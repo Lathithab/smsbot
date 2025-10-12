@@ -65,7 +65,7 @@ def check_spam(message: str, access_token: str):
         # Generate advice based on label
         if label.lower() == "spam":
             advice = (
-                f"[{time_now}] ⚠️ Heads up! This message looks like spam (Confidence: {confidence:.1f}%).\n\n"
+                f" ⚠️ Heads up! This message looks like spam (Confidence: {confidence:.1f}%).\n\n"
                 "💡 Tips:\n"
                 "🚫 Don’t click any links or download attachments.\n"
                 "🔒 Never share personal info or OTP codes.\n"
@@ -78,7 +78,7 @@ def check_spam(message: str, access_token: str):
             )
         else:
             advice = (
-                f"[{time_now}] ✅ This message seems safe (Confidence: {confidence:.1f}%).\n\n"
+                f" ✅ This message seems safe (Confidence: {confidence:.1f}%).\n\n"
                 "💡 Tips:\n"
                 "🧐Still double-check links before clicking.\n"
                 "🔒Avoid sharing sensitive info if something feels off.\n"
