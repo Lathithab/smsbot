@@ -64,20 +64,20 @@ def check_spam(message: str, access_token: str):
             advice = (
                 f"⚠️ Heads up! This message looks like spam (I'm {confidence:.1f}% sure).\n\n"
                 "💡 Tips:\n"
-                "🚫 Don't click any links or download attachments.\n"
-                "🔒 Never share personal info or OTP codes.\n"
-                "📞 If it's from a known contact, confirm through another channel.\n"
-                "⚠️ Mark the message as spam in your messaging app.\n"
-                "🌐 Google the company, offer, or message content to verify legitimacy.\n"
+                "🚫 Don't click any links or download attachments\n"
+                "🔒 Never share personal info or OTP codes\n"
+                "📞 If it's from a known contact, confirm through another channel\n"
+                "⚠️ Mark the message as spam in your messaging app\n"
+                "🌐 Google the company, offer, or message content to verify legitimacy\n"
                 "🧐 Look for spelling mistakes or suspicious URLs."
             )
         else:
             advice = (
-                f"✅ This message seems safe (I'm {confidence:.1f}% sure).\n\n"
+                f"✅ This message seems safe (I'm {confidence:.1f}% sure)\n\n"
                 "💡 Tips:\n"
-                "🧐 Still double-check links before clicking.\n"
-                "🔒 Avoid sharing sensitive info if something feels off.\n"
-                "⚠️ Keep an eye out for grammar mistakes or weird sender addresses.\n"
+                "🧐 Still double-check links before clicking\n"
+                "🔒 Avoid sharing sensitive info if something feels off\n"
+                "⚠️ Keep an eye out for grammar mistakes or weird sender addresses\n"
                 "🌐 If in doubt, ask a friend or verify through official sources."
             )
         
