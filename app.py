@@ -27,10 +27,10 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+with st.chat_message("assistant")
+    st.text ('Hello, I'm your cyber companion, Cindy! 👋 \n\n Check any suspicious message with me! Paste your message here to me so I can check it out!' , is_user=False)
 
-st.chat_message("Hello, I'm your cyber companion, Cindy! 👋 Check any suspicious message with me! Paste your message here to me so I can check it out!", is_user=False)
 
-        
 
 incoming_sms = st.text_input("Paste your message here:", placeholder="Enter a message to check...")
 
