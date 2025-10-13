@@ -20,15 +20,9 @@ if st.session_state.token is None:
 
 
 # Bot greeting message
-st.markdown("""
-<div style='display: flex; justify-content: flex-start; margin-bottom: 10px;'>
-    <div style='background-color: #E5E5EA; color: black; padding: 10px 15px; border-radius: 18px; max-width: 70%; word-wrap: break-word;'>
-        Hello, I'm your cyber companion, Cindy! 👋 Check any suspicious message with me! Paste your message here to me so I can check it out!
-    </div>
-</div>
-""", unsafe_allow_html=True)
+
 with st.chat_message("assistant"):
-    st.markdown ("Hello, I'm your cyber companion, Cindy!  \n\n Check any suspicious message with me! Paste your message here to me so I can check it out!")
+    st.markdown ("Hello, I'm your cyber companion, Cindy! \n Check any suspicious message with me! Paste your message here to me so I can check it out!")
 
 
 
@@ -56,6 +50,9 @@ if st.session_state.history:
             </div>
         </div>
         """, unsafe_allow_html=True)
+
+        with st.chat_message("user"):
+            st.markdown (msg)
         
         # Bot response (left-aligned)
         color = "#FF3B30" if label.lower() == "spam" else "#34C759"
