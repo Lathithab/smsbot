@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_chat import message
 from spam_checker import get_nyckel_token, check_spam
 
 st.set_page_config(page_title="Cindy the Cyber Companion", layout="wide")
