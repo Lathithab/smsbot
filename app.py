@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_chat import message
 from spam_checker import get_nyckel_token, check_spam
 
 st.set_page_config(page_title="Cindy the Cyber Companion", layout="wide")
@@ -27,6 +28,10 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
+st.chat_message("Hello, I'm your cyber companion, Cindy! 👋 Check any suspicious message with me! Paste your message here to me so I can check it out!", is_user=False)
+
+        
 
 incoming_sms = st.text_input("Paste your message here:", placeholder="Enter a message to check...")
 
