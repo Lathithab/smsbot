@@ -28,7 +28,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 with st.chat_message("assistant")
-    st.text ('Hello, I'm your cyber companion, Cindy! 👋 \n\n Check any suspicious message with me! Paste your message here to me so I can check it out!' , is_user=False)
+    st.text ('Hello, I'm your cyber companion, Cindy!  \n\n Check any suspicious message with me! Paste your message here to me so I can check it out!' , is_user=False)
 
 
 
