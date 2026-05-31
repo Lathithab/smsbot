@@ -16,18 +16,18 @@ if "token" not in st.session_state:
 
 # --- Sidebar ---
 with st.sidebar:
-    st.subheader("About Cindy")
-    st.write("""
-    Cindy uses **Nyckel's SMS Spam Identifier** to detect spam with AI.
-
-    - 🔍 **Spam Detection** — flags scams and unwanted messages  
-    - 📊 **Confidence Score** — shows how certain the AI is  
-    - 💬 **Chat History** — tracks all checked messages  
-    """)
-    if st.button("🗑️ Clear History", use_container_width=True):
-        st.session_state.history = []
-        st.rerun()
-    st.caption(f"Messages checked: {len(st.session_state.history)}")
+    st.markdown("---")
+    st.subheader("🧪 Try these examples")
+    sample_messages = [
+        "Congratulations! You've won a R5,000 Woolworths voucher. Click here to claim: bit.ly/claim-now",
+        "Your OTP is 482910. Do not share this with anyone.",
+        "Hi, are we still meeting at 3pm today?",
+        "URGENT: Your account has been suspended. Verify now at secure-login.co.za",
+    ]
+    for sample in sample_messages:
+        if st.button(sample[:50] + "...", use_container_width=True, key=sample):
+            st.session_state.prefill = sample
+            st.rerun()
 
 # --- Chat history display ---
 # Greeting
@@ -50,6 +50,27 @@ for msg, label, confidence, advice in st.session_state.history:
             st.success(f"✅ **Safe** — {confidence:.1f}% confidence")
         st.progress(confidence / 100)
         st.markdown(advice)
+
+# Handle prefilled sample message
+if "prefill" in st.session_state:
+    prefill = st.session_state.pop("prefill")
+    # Process it directly as if the user typed it
+    with st.chat_message("user"):
+        st.markdown(prefill)
+    with st.chat_message("assistant", avatar="🛡️"):
+        with st.spinner("Analysing..."):
+            label, confidence, advice = check_spam(prefill, st.session_state.token)
+        if label.lower() == "spam":
+            st.error(f"🚨 **SPAM** — {confidence:.1f}% confidence")
+        elif label.lower() == "error":
+            st.warning("⚠️ Could not classify this message.")
+        else:
+            st.success(f"✅ **Safe** — {confidence:.1f}% confidence")
+        st.progress(confidence / 100)
+        st.markdown(advice)
+    st.session_state.history.append((prefill, label, confidence, advice))
+
+
 
 # --- Chat input (sits at bottom, submits on Enter) ---
 incoming_sms = st.chat_input("Paste a message to check...")
